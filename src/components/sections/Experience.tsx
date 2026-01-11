@@ -1,123 +1,104 @@
 "use client";
 
 import React from 'react';
-import { Briefcase, Calendar, MapPin, Building2, ChevronRight } from 'lucide-react';
+import { Briefcase, MapPin, Calendar, CheckCircle2 } from 'lucide-react';
 import { motion } from "framer-motion";
 
-const experiences = [
-  {
-    role: "AIML Intern",
-    company: "YBI Foundation",
-    duration: "2023 - Present",
-    location: "Remote",
-    description: "Built recommendation systems and analyzed complex datasets to derive actionable insights using machine learning techniques.",
-    responsibilities: [
-      "Developed and implemented movie recommendation systems using collaborative filtering.",
-      "Conducted data preprocessing and exploratory data analysis on large-scale datasets.",
-      "Optimized model performance through hyperparameter tuning and cross-validation.",
-      "Collaborated with senior engineers to understand production deployment workflows."
-    ]
-  },
-  {
-    role: "Android Developer Intern",
-    company: "GOWOX Infotech Pvt. Ltd",
-    duration: "2022 - 2023",
-    location: "Noida, India",
-    description: "Focused on crafting intuitive mobile experiences and implementing modern Android development practices.",
-    responsibilities: [
-      "Developed several Android application modules using Java and Kotlin.",
-      "Integrated RESTful APIs for real-time data synchronization.",
-      "Collaborated on UI/UX designs to enhance user engagement and retention.",
-      "Debugged and resolved performance issues to ensure smooth app operation."
-    ]
-  }
-];
+const ExperienceCard = ({ exp, index }: any) => (
+  <motion.div
+    initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true }}
+    className="relative pl-12 pb-12 last:pb-0 group"
+  >
+    {/* Timeline Line */}
+    <div className="absolute left-[11px] top-0 bottom-0 w-0.5 bg-indigo-500/10 group-last:bottom-full" />
+    
+    {/* Timeline Dot */}
+    <div className="absolute left-0 top-1.5 w-6 h-6 rounded-full bg-background border-4 border-indigo-500 shadow-[0_0_15px_rgba(99,102,241,0.5)] z-10 transition-transform group-hover:scale-125" />
 
-const Experience = () => {
+    <div className="glass-card rounded-[2rem] p-8 group-hover:border-indigo-500/30 transition-all">
+      <div className="flex flex-wrap justify-between items-start gap-4 mb-6">
+        <div>
+          <h3 className="text-2xl font-black text-foreground mb-1">{exp.role}</h3>
+          <p className="text-indigo-500 font-black uppercase tracking-widest text-xs">{exp.company}</p>
+        </div>
+        <div className="px-4 py-2 bg-indigo-500/10 rounded-full border border-indigo-500/20 text-indigo-500 text-xs font-black flex items-center space-x-2">
+          <Calendar className="w-3.5 h-3.5" />
+          <span>{exp.duration}</span>
+        </div>
+      </div>
+
+      <div className="flex items-center space-x-2 text-foreground/40 text-sm font-bold mb-6">
+        <MapPin className="w-4 h-4" />
+        <span>{exp.location}</span>
+      </div>
+
+      <p className="text-foreground/60 leading-relaxed font-medium mb-8">
+        {exp.description}
+      </p>
+
+      <div className="flex flex-wrap gap-2">
+        {exp.skills.map((skill: string, i: number) => (
+          <span 
+            key={i}
+            className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-xl text-[10px] font-black uppercase tracking-wider text-foreground/50 group-hover:text-indigo-500 group-hover:border-indigo-500/30 transition-colors"
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+  </motion.div>
+);
+
+export default function Experience() {
+  const experiences = [
+    {
+      role: "AIML Intern",
+      company: "YBI Foundation",
+      duration: "June 2023 - July 2023",
+      location: "Remote",
+      description: "Spearheaded the development of machine learning models for real-world predictive analytics. Focused on optimizing data preprocessing pipelines and model evaluation frameworks.",
+      skills: ["Python", "TensorFlow", "Pandas", "Scikit-Learn"]
+    },
+    {
+      role: "Android Developer Intern",
+      company: "GOWOX Infotech Pvt. Ltd",
+      duration: "Jan 2023 - March 2023",
+      location: "Work from Home",
+      description: "Collaborated on the end-to-end development of Android applications. Implemented complex UI components and integrated RESTful APIs for seamless data synchronization.",
+      skills: ["Java", "Android Studio", "XML", "Retrofit"]
+    }
+  ];
+
   return (
-    <section id="experience" className="py-24 md:py-32 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <section id="experience" className="py-24 md:py-32">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16 md:mb-24"
+          className="text-center mb-24"
         >
-          <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter">
-            <span className="text-gradient">Experience</span>
-          </h2>
-          <p className="text-foreground/60 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
-            My professional journey and internship experiences in software development and AI.
-          </p>
-          <div className="mt-8 flex justify-center space-x-2">
-            <div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
+          <div className="inline-flex items-center space-x-2 px-4 py-2 bg-indigo-500/10 rounded-full mb-6 border border-indigo-500/20">
+            <Briefcase className="w-4 h-4 text-indigo-500" />
+            <span className="text-sm font-black text-indigo-500 uppercase tracking-widest">Career Path</span>
           </div>
+          <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter">
+            Professional <span className="text-gradient">Journey</span>
+          </h2>
+          <p className="text-foreground/60 text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+            A track record of continuous growth and technical contributions across diverse engineering domains.
+          </p>
         </motion.div>
 
-        <div className="max-w-5xl mx-auto">
-          <div className="relative space-y-16">
-            {/* Timeline Vertical Line */}
-            <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500 via-purple-500 to-indigo-500 opacity-20 hidden md:block" />
-
-            {experiences.map((exp, index) => (
-              <motion.div 
-                key={index} 
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className={`relative flex flex-col md:flex-row items-center ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
-              >
-                {/* Timeline Dot */}
-                <div className="absolute left-[-5px] md:left-1/2 md:ml-[-10px] top-0 md:top-10 w-5 h-5 bg-indigo-600 rounded-full z-20 shadow-2xl shadow-indigo-500/50 hidden md:block" />
-
-                  <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'} ml-6 md:ml-0`}>
-                    <div className="glass-card p-8 md:p-10 rounded-3xl border border-black/5 dark:border-white/10 group">
-                      <div className={`flex flex-col gap-4 mb-8 ${index % 2 === 0 ? 'md:items-end' : 'items-start'}`}>
-                        <div className="p-4 bg-indigo-500/10 rounded-2xl text-indigo-500 w-fit">
-
-                        <Briefcase size={28} />
-                      </div>
-                      <div>
-                        <h3 className="text-2xl md:text-3xl font-black text-foreground group-hover:text-indigo-400 transition-colors">
-                          {exp.role}
-                        </h3>
-                        <div className={`flex flex-wrap items-center gap-x-6 gap-y-2 mt-3 text-sm font-bold tracking-wide text-foreground/50 ${index % 2 === 0 ? 'md:justify-end' : 'justify-start'}`}>
-                          <span className="flex items-center gap-2">
-                            <Building2 size={16} className="text-indigo-500" />
-                            {exp.company}
-                          </span>
-                          <span className="flex items-center gap-2">
-                            <Calendar size={16} className="text-purple-500" />
-                            {exp.duration}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <p className="text-foreground/70 mb-8 text-base md:text-lg leading-relaxed font-medium">
-                      {exp.description}
-                    </p>
-
-                    <ul className={`space-y-4 ${index % 2 === 0 ? 'md:items-end' : 'items-start'} flex flex-col`}>
-                      {exp.responsibilities.map((item, i) => (
-                        <li key={i} className={`flex gap-3 text-sm text-foreground/50 font-medium leading-snug ${index % 2 === 0 ? 'md:flex-row-reverse md:text-right' : 'flex-row text-left'}`}>
-                          <ChevronRight size={18} className={`shrink-0 text-indigo-500 mt-0.5 ${index % 2 === 0 ? 'md:rotate-180' : ''}`} />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="hidden md:block w-1/2" />
-              </motion.div>
-            ))}
-          </div>
+        <div className="relative">
+          {experiences.map((exp, i) => (
+            <ExperienceCard key={i} exp={exp} index={i} />
+          ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default Experience;
+}
