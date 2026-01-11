@@ -72,12 +72,12 @@ const About = () => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4 p-6 bg-white/5 rounded-2xl mb-8 border border-white/10">
+                  <div className="grid grid-cols-3 gap-4 p-6 bg-black/5 dark:bg-white/5 rounded-2xl mb-8 border border-black/5 dark:border-white/10">
                     <div>
                       <p className="text-2xl font-black text-gradient">2+</p>
                       <p className="text-[10px] uppercase tracking-widest text-foreground/50 font-bold mt-1">Projects</p>
                     </div>
-                    <div className="border-x border-white/10">
+                    <div className="border-x border-black/5 dark:border-white/10">
                       <p className="text-2xl font-black text-gradient">2</p>
                       <p className="text-[10px] uppercase tracking-widest text-foreground/50 font-bold mt-1">Internships</p>
                     </div>
