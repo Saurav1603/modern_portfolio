@@ -56,18 +56,19 @@ const Projects = () => {
             >
               <div className="absolute -inset-2 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
               
-              <div className="glass-card rounded-[2rem] p-8 md:p-12 h-full flex flex-col relative overflow-hidden">
-                <div className="flex justify-between items-start mb-10">
-                  <div className="p-4 bg-indigo-500/10 rounded-2xl text-indigo-500">
-                    {index === 0 ? <Layers size={32} /> : <Code2 size={32} />}
+                <div className="glass-card rounded-[2rem] p-8 md:p-12 h-full flex flex-col relative overflow-hidden">
+                  <div className="flex justify-between items-start mb-10">
+                    <div className="p-4 bg-indigo-500/10 rounded-2xl text-indigo-500">
+                      {index === 0 ? <Layers size={32} /> : <Code2 size={32} />}
+                    </div>
+                    <motion.span 
+                      whileHover={{ scale: 1.05 }}
+                      className="px-5 py-2 bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 text-foreground/50 rounded-full text-xs font-black tracking-widest uppercase"
+                    >
+                      {project.category}
+                    </motion.span>
                   </div>
-                  <motion.span 
-                    whileHover={{ scale: 1.05 }}
-                    className="px-5 py-2 bg-white/5 border border-white/10 text-foreground/50 rounded-full text-xs font-black tracking-widest uppercase"
-                  >
-                    {project.category}
-                  </motion.span>
-                </div>
+
 
                 <h3 className="text-3xl md:text-4xl font-black text-foreground mb-6 tracking-tighter group-hover:text-indigo-400 transition-colors">
                   {project.title}
