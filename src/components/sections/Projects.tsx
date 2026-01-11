@@ -1,19 +1,22 @@
+"use client";
+
 import React from 'react';
-import { ExternalLink, Github, Code2, Layers } from 'lucide-react';
+import { ExternalLink, Github, Code2, Layers, Sparkles } from 'lucide-react';
+import { motion } from "framer-motion";
 
 const projects = [
   {
     title: "Movie Recommendation System",
-    description: "A machine learning project that recommends movies based on user preferences using collaborative filtering techniques. The system analyzes user behavior patterns and movie ratings to provide personalized recommendations.",
-    tech: ["Python", "Pandas", "Scikit-Learn", "Streamlit"],
+    description: "A sophisticated machine learning engine that recommends movies using hybrid collaborative filtering and content-based algorithms. Built with a focus on precision and low-latency inference.",
+    tech: ["Python", "Scikit-Learn", "Streamlit", "Pandas"],
     github: "https://github.com/Saurav1603",
     demo: "#",
     category: "Machine Learning"
   },
   {
     title: "Stock Price Predictor",
-    description: "An LSTM-based deep learning model trained on historical time-series stock data to predict future stock prices. The model uses recurrent neural networks to capture temporal patterns in market data.",
-    tech: ["Python", "TensorFlow", "Keras", "Matplotlib"],
+    description: "An LSTM-based deep learning model capable of predicting volatile market trends using historical time-series data. Features an interactive dashboard for real-time visualization.",
+    tech: ["TensorFlow", "Keras", "NumPy", "Matplotlib"],
     github: "https://github.com/Saurav1603",
     demo: "#",
     category: "Deep Learning"
@@ -22,96 +25,111 @@ const projects = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-20 md:py-32 bg-white dark:bg-gray-900 relative overflow-hidden">
-      {/* Background Ornaments */}
-      <div className="absolute top-40 left-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-40 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none"></div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16 md:mb-24">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            <span className="text-gradient relative inline-block">
-              Featured Projects
-              <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></span>
-            </span>
+    <section id="projects" className="py-24 md:py-32 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16 md:mb-24"
+        >
+          <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter">
+            <span className="text-gradient">Featured Work</span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
-            A showcase of my recent work and personal projects
+          <p className="text-foreground/60 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+            Exploring the boundaries of AI and Software Architecture.
           </p>
           <div className="mt-8 flex justify-center space-x-2">
-            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full self-center"></div>
-            <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           {projects.map((project, index) => (
-            <div key={index} className="group relative">
-              {/* Card Decoration Layers for 3D effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-purple-600/10 rounded-[2rem] transform translate-x-3 translate-y-3 -z-10 group-hover:translate-x-5 group-hover:translate-y-5 transition-transform duration-500"></div>
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2 }}
+              className="group relative"
+            >
+              <div className="absolute -inset-2 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
               
-              <div className="glass-card rounded-[2rem] p-8 md:p-10 flex flex-col h-full border border-white/20 dark:border-gray-800 bg-white/70 dark:bg-gray-800/70 backdrop-blur-xl shadow-xl overflow-hidden relative">
-                <div className="flex justify-between items-start mb-6">
-                  <div className="p-3 bg-blue-50 dark:bg-blue-900/30 rounded-2xl text-blue-600 dark:text-blue-400">
-                    {index === 0 ? <Layers size={28} /> : <Code2 size={28} />}
+              <div className="glass-card rounded-[2rem] p-8 md:p-12 h-full flex flex-col relative overflow-hidden">
+                <div className="flex justify-between items-start mb-10">
+                  <div className="p-4 bg-indigo-500/10 rounded-2xl text-indigo-500">
+                    {index === 0 ? <Layers size={32} /> : <Code2 size={32} />}
                   </div>
-                  <span className="px-4 py-1.5 bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-300 rounded-full text-xs font-semibold tracking-wider uppercase">
+                  <motion.span 
+                    whileHover={{ scale: 1.05 }}
+                    className="px-5 py-2 bg-white/5 border border-white/10 text-foreground/50 rounded-full text-xs font-black tracking-widest uppercase"
+                  >
                     {project.category}
-                  </span>
+                  </motion.span>
                 </div>
 
-                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                <h3 className="text-3xl md:text-4xl font-black text-foreground mb-6 tracking-tighter group-hover:text-indigo-400 transition-colors">
                   {project.title}
                 </h3>
                 
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-8 flex-grow">
+                <p className="text-foreground/60 text-lg leading-relaxed mb-10 font-medium">
                   {project.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mb-8">
+                <div className="flex flex-wrap gap-3 mb-12">
                   {project.tech.map((tag, i) => (
                     <span 
                       key={i} 
-                      className="px-3 py-1 bg-blue-50/50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-300 text-sm font-medium rounded-lg border border-blue-100/50 dark:border-blue-800/50"
+                      className="px-4 py-2 bg-indigo-500/5 text-indigo-400 text-xs font-bold rounded-xl border border-indigo-500/10"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="flex items-center gap-4 pt-6 border-t border-gray-100 dark:border-gray-700">
-                  <a 
+                <div className="flex items-center gap-8 pt-8 mt-auto border-t border-white/5">
+                  <motion.a 
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-semibold transition-colors group/link"
+                    whileHover={{ x: 5 }}
+                    className="flex items-center gap-3 text-foreground/70 hover:text-indigo-500 font-bold transition-colors"
                   >
-                    <Github size={20} className="group-hover/link:scale-110 transition-transform" />
-                    <span>Source Code</span>
-                  </a>
-                  <a 
+                    <Github size={20} />
+                    <span>Source</span>
+                  </motion.a>
+                  <motion.a 
                     href={project.demo}
-                    className="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-semibold transition-colors group/link ml-auto"
+                    whileHover={{ x: 5 }}
+                    className="flex items-center gap-3 text-foreground/70 hover:text-indigo-500 font-bold transition-colors ml-auto"
                   >
-                    <span>Live Demo</span>
-                    <ExternalLink size={18} className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
-                  </a>
+                    <span>Demo</span>
+                    <ExternalLink size={18} />
+                  </motion.a>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        <div className="mt-20 text-center">
-          <a 
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-24 text-center"
+        >
+          <motion.a 
             href="https://github.com/Saurav1603" 
-            className="inline-flex items-center space-x-3 px-8 py-4 border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 rounded-full font-bold hover:border-blue-500 hover:text-blue-500 transition-all group"
+            target="_blank"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center space-x-4 px-10 py-5 glass-card rounded-2xl font-bold text-lg text-foreground/80 hover:text-indigo-500"
           >
-            <span>Explore More on GitHub</span>
-            <Github size={20} className="group-hover:rotate-12 transition-transform" />
-          </a>
-        </div>
+            <span>View More Projects</span>
+            <Github size={24} />
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );
