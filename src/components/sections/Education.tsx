@@ -1,118 +1,130 @@
 import React from 'react';
-import { GraduationCap, Calendar, MapPin, Award, BookOpen } from 'lucide-react';
-
-const educationData = [
-  {
-    degree: "B.Tech – Computer Science & Engineering (Artificial Intelligence)",
-    institution: "Noida Institute of Engineering and Technology",
-    location: "Greater Noida, UP",
-    duration: "2021 – 2025",
-    description: "Specializing in Artificial Intelligence and Machine Learning. Focused on core subjects like Data Structures, Algorithms, Neural Networks, and Deep Learning.",
-    highlight: "Currently in Final Year"
-  },
-  {
-    degree: "Diploma – Computer Science & Engineering",
-    institution: "Government Polytechnic",
-    location: "Lucknow, UP",
-    duration: "2018 – 2021",
-    description: "Built a strong foundation in computer science fundamentals, software development, and networking principles.",
-    highlight: "First Class with Distinction"
-  },
-  {
-    degree: "Senior Secondary (Class XII)",
-    institution: "Lalit Narayan Railway Colony High School",
-    location: "Munger, Bihar",
-    duration: "2016 – 2018",
-    description: "Completed higher secondary education with a focus on Physics, Chemistry, and Mathematics (PCM).",
-    highlight: "BSEB Board"
-  },
-  {
-    degree: "Secondary (Class X)",
-    institution: "Lalit Narayan Railway Colony High School",
-    location: "Munger, Bihar",
-    duration: "2016",
-    description: "Foundational education covering science, mathematics, and social studies with academic excellence.",
-    highlight: "BSEB Board"
-  }
-];
+import { GraduationCap, BookOpen, School, Calendar, Building2, Award } from 'lucide-react';
 
 const Education = () => {
-  return (
-    <section id="education" className="py-24 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
-      {/* Decorative background elements */}
-      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-blue-500/5 blur-[100px] pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-purple-500/5 blur-[100px] pointer-events-none"></div>
+  const educationData = [
+    {
+      degree: "B.Tech – Computer Science & Engineering (Artificial Intelligence)",
+      institution: "Noida Institute of Engineering and Technology",
+      period: "2022 - 2025",
+      description: "Focusing on AI/ML fundamentals, deep learning, and scalable software solutions.",
+      icon: <GraduationCap className="w-6 h-6" />,
+      color: "from-blue-500 to-blue-600"
+    },
+    {
+      degree: "Diploma – Computer Science & Engineering",
+      institution: "Government Polytechnic, Muzaffarpur",
+      period: "2019 - 2022",
+      description: "Solid foundation in core computer science, programming, and data structures.",
+      icon: <BookOpen className="w-6 h-6" />,
+      color: "from-purple-500 to-purple-600"
+    },
+    {
+      degree: "Senior Secondary (Class XII)",
+      institution: "M.S. College, Motihari",
+      period: "2017 - 2019",
+      description: "Science stream with a focus on Mathematics and Physics.",
+      icon: <Award className="w-6 h-6" />,
+      color: "from-cyan-500 to-cyan-600"
+    },
+    {
+      degree: "Secondary (Class X)",
+      institution: "S.N.S. High School",
+      period: "2017",
+      description: "General academic curriculum with excellence in technical subjects.",
+      icon: <School className="w-6 h-6" />,
+      color: "from-indigo-500 to-indigo-600"
+    }
+  ];
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient">Education</span>
+  return (
+    <section id="education" className="py-20 md:py-32 bg-white relative overflow-hidden">
+      {/* Background Decorative Elements */}
+      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-40 right-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div className="container-custom relative px-6 md:px-12 max-w-7xl mx-auto">
+        <div className="text-center mb-16 md:mb-24">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+            <span className="text-gradient relative">
+              Education
+              <span className="absolute -bottom-2 left-0 h-1.5 w-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full opacity-20"></span>
+            </span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             My academic journey and qualifications
           </p>
-          <div className="mt-6 flex justify-center space-x-2">
-            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full self-center"></div>
-            <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+          <div className="mt-8 flex justify-center items-center space-x-3">
+            <div className="w-3 h-3 bg-blue-600 rounded-full animate-pulse"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
+            <div className="w-3 h-3 bg-purple-600 rounded-full animate-pulse"></div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-          {educationData.map((item, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          {educationData.map((edu, index) => (
             <div 
               key={index}
-              className="glass-card p-8 rounded-[1.5rem] border border-gray-200/50 dark:border-gray-700/50 hover:shadow-2xl transition-all duration-300 group"
+              className="glass-card group p-8 rounded-[2rem] border border-border/50 bg-white/70 backdrop-blur-xl hover:shadow-2xl transition-all duration-500 flex flex-col h-full"
             >
-              <div className="flex flex-col h-full">
-                <div className="flex items-start justify-between mb-6">
-                  <div className="p-3 bg-blue-100 dark:bg-blue-900/30 rounded-2xl group-hover:scale-110 transition-transform duration-300">
-                    <GraduationCap className="w-8 h-8 text-blue-600 dark:text-blue-400" />
-                  </div>
-                  <div className="flex items-center space-x-2 px-4 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-full">
-                    <Calendar className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-                    <span className="text-sm font-medium text-gray-600 dark:text-gray-300">{item.duration}</span>
-                  </div>
+              <div className="flex items-start justify-between mb-6">
+                <div className={`p-4 rounded-2xl bg-gradient-to-br ${edu.color} text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                  {edu.icon}
+                </div>
+                <div className="flex items-center space-x-2 text-sm font-medium text-blue-600 bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100">
+                  <Calendar className="w-4 h-4" />
+                  <span>{edu.period}</span>
+                </div>
+              </div>
+
+              <div className="flex-grow">
+                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 leading-tight group-hover:text-blue-600 transition-colors">
+                  {edu.degree}
+                </h3>
+                
+                <div className="flex items-center text-muted-foreground mb-4 font-medium">
+                  <Building2 className="w-4 h-4 mr-2 text-blue-500" />
+                  <span>{edu.institution}</span>
                 </div>
 
-                <div className="flex-grow">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 leading-tight">
-                    {item.degree}
-                  </h3>
-                  <div className="flex items-center text-blue-600 dark:text-blue-400 font-semibold mb-4 text-lg">
-                    <BookOpen className="w-4 h-4 mr-2" />
-                    {item.institution}
-                  </div>
-                  
-                  <div className="flex items-center text-gray-500 dark:text-gray-400 mb-6 font-medium">
-                    <MapPin className="w-4 h-4 mr-2" />
-                    {item.location}
-                  </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  {edu.description}
+                </p>
+              </div>
 
-                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-                    {item.description}
-                  </p>
-                </div>
-
-                <div className="pt-6 border-t border-gray-100 dark:border-gray-800 flex items-center">
-                  <div className="inline-flex items-center space-x-2 px-3 py-1 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400 rounded-lg text-sm font-semibold border border-green-100 dark:border-green-900/30">
-                    <Award className="w-4 h-4" />
-                    <span>{item.highlight}</span>
-                  </div>
-                </div>
+              <div className="mt-8 pt-6 border-t border-gray-100 flex justify-end">
+                <div className="w-8 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full group-hover:w-16 transition-all duration-500"></div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Vertical Journey Indicator for extra visual flair */}
+        {/* Motivational Quote or Footer Note for Section */}
         <div className="mt-20 text-center">
-          <div className="inline-flex items-center space-x-3 px-6 py-3 bg-white dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700 shadow-lg">
-            <span className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></span>
-            <span className="text-gray-700 dark:text-gray-300 font-medium">Total Academic Journey: 7+ Years of Learning</span>
+          <div className="inline-block p-1 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-100">
+            <div className="px-8 py-4 bg-white/80 backdrop-blur-sm rounded-xl">
+              <p className="text-muted-foreground italic text-lg">
+                "Education is not the learning of facts, but the training of the mind to think."
+              </p>
+            </div>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .text-gradient {
+          background: linear-gradient(to right, #2563eb, #9333ea);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        .glass-card {
+           box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .container-custom {
+            max-width: 1280px;
+        }
+      `}</style>
     </section>
   );
 };
