@@ -4,7 +4,8 @@
 
 [build.environment]
   NODE_VERSION = "20"
-  BUN_VERSION = "1.1.20"
+  BUN_VERSION = "latest"
+  NETLIFY_USE_BUN = "true"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
