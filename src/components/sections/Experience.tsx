@@ -71,10 +71,11 @@ const Experience = () => {
                 {/* Timeline Dot */}
                 <div className="absolute left-[-5px] md:left-1/2 md:ml-[-10px] top-0 md:top-10 w-5 h-5 bg-indigo-600 rounded-full z-20 shadow-2xl shadow-indigo-500/50 hidden md:block" />
 
-                <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'} ml-6 md:ml-0`}>
-                  <div className="glass-card p-8 md:p-10 rounded-3xl border border-white/10 group">
-                    <div className={`flex flex-col gap-4 mb-8 ${index % 2 === 0 ? 'md:items-end' : 'items-start'}`}>
-                      <div className="p-4 bg-indigo-500/10 rounded-2xl text-indigo-500 w-fit">
+                  <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16 md:text-left'} ml-6 md:ml-0`}>
+                    <div className="glass-card p-8 md:p-10 rounded-3xl border border-black/5 dark:border-white/10 group">
+                      <div className={`flex flex-col gap-4 mb-8 ${index % 2 === 0 ? 'md:items-end' : 'items-start'}`}>
+                        <div className="p-4 bg-indigo-500/10 rounded-2xl text-indigo-500 w-fit">
+
                         <Briefcase size={28} />
                       </div>
                       <div>
