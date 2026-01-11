@@ -4,144 +4,122 @@ import React, { useState, useEffect } from "react";
 import { Moon, Sun, Download, Menu, X } from "lucide-react";
 
 /**
- * Navbar component for Saurav Raj's portfolio.
- * Features a glassmorphism effect, gradient logo, navigation links,
- * theme toggle, and a gradient resume button.
+ * Navbar component cloned with pixel-perfect accuracy.
+ * Features: Glassmorphism effect, gradient logo, navigation links, theme toggle, and resume button.
  */
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Handle scroll effect for glassmorphism
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-
-      // Section highlighting logic
-      const sections = ["home", "about", "skills", "projects", "experience", "education", "contact"];
-      const current = sections.find((section) => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      if (current) setActiveSection(current);
+      setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#home", id: "home" },
-    { name: "About", href: "#about", id: "about" },
-    { name: "Skills", href: "#skills", id: "skills" },
-    { name: "Projects", href: "#projects", id: "projects" },
-    { name: "Experience", href: "#experience", id: "experience" },
-    { name: "Education", href: "#education", id: "education" },
-    { name: "Contact", href: "#contact", id: "contact" },
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#projects" },
+    { name: "Experience", href: "#experience" },
+    { name: "Education", href: "#education" },
+    { name: "Contact", href: "#contact" },
   ];
 
   return (
-    <>
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled 
-            ? "glass-panel bg-gray-900/80 border-b border-white/10 py-3" 
-            : "bg-transparent py-5"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo */}
-            <a
-              href="#home"
-              className="text-xl md:text-2xl font-bold text-gradient"
-              style={{
-                background: "linear-gradient(to right, #2563eb, #9333ea, #0891b2)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              Saurav Raj
-            </a>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-gray-900/80 backdrop-blur-xl border-b border-white/10 py-3"
+          : "bg-transparent py-5"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Logo */}
+          <a
+            href="#home"
+            className="text-xl md:text-2xl font-bold text-gradient bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 bg-clip-text text-transparent"
+            style={{
+              fontSize: "24px",
+              fontFamily: "Inter, system-ui, -apple-system, sans-serif",
+            }}
+          >
+            Saurav Raj
+          </a>
 
-            {/* Desktop Navigation Links */}
-            <div className="hidden md:flex items-center space-x-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className={`px-4 py-2 text-sm font-medium transition-colors rounded-lg hover:bg-gray-800 ${
-                    activeSection === link.id
-                      ? "text-blue-400 bg-gray-800/50"
-                      : "text-gray-300 hover:text-blue-400"
-                  }`}
-                >
-                  {link.name}
-                </a>
-              ))}
-            </div>
-
-            {/* Right Side Actions */}
-            <div className="flex items-center space-x-2">
-              {/* Theme Toggle Button */}
-              <button
-                className="p-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 transition-colors"
-                aria-label="Toggle dark mode"
-              >
-                <Moon size={20} />
-              </button>
-
-              {/* Resume Button */}
-              <a
-                href="/resume.pdf"
-                className="hidden md:flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium text-sm hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-blue-500/20"
-              >
-                <Download size={16} />
-                <span>Resume</span>
-              </a>
-
-              {/* Mobile Menu Toggle */}
-              <button
-                className="md:hidden p-2 rounded-lg bg-gray-800 text-gray-300"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label="Toggle menu"
-              >
-                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile Navigation Menu */}
-        <div
-          className={`md:hidden absolute top-full left-0 right-0 glass-panel bg-gray-900/95 transition-all duration-300 transform origin-top ${
-            mobileMenuOpen ? "scale-y-100 opacity-100 visible" : "scale-y-0 opacity-0 invisible"
-          }`}
-        >
-          <div className="px-4 pt-2 pb-6 space-y-1">
+          {/* Desktop Navigation Links */}
+          <div className="hidden md:flex items-center space-x-1">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors ${
-                  activeSection === link.id
-                    ? "text-blue-400 bg-gray-800"
-                    : "text-gray-300 hover:text-blue-400 hover:bg-gray-800"
-                }`}
+                className="px-4 py-2 text-sm font-medium text-gray-300 hover:text-blue-400 transition-colors rounded-lg hover:bg-gray-800"
+                style={{
+                  fontSize: "14px",
+                  lineHeight: "20px",
+                }}
               >
                 {link.name}
               </a>
             ))}
-            <div className="pt-4 px-4">
+          </div>
+
+          {/* Actions: Theme Toggle & Resume Button */}
+          <div className="flex items-center space-x-2">
+            <button
+              className="p-2 rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 transition-colors"
+              aria-label="Toggle dark mode"
+            >
+              <Moon size={20} className="lucide lucide-moon" />
+            </button>
+
+            <a
+              href="/resume.pdf"
+              className="hidden md:flex items-center space-x-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium text-sm hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-blue-500/25"
+            >
+              <Download size={16} className="lucide lucide-download" />
+              <span>Resume</span>
+            </a>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden p-2 rounded-lg bg-gray-800 text-gray-300"
+              aria-label="Toggle menu"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? (
+                <X size={24} className="lucide lucide-x" />
+              ) : (
+                <Menu size={24} className="lucide lucide-menu" />
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-gray-900/95 backdrop-blur-xl border-t border-white/10 animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="px-4 pt-2 pb-6 space-y-1 shadow-2xl">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="block px-4 py-3 text-base font-medium text-gray-300 hover:text-white hover:bg-gray-800 rounded-xl transition-all"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
+              </a>
+            ))}
+            <div className="pt-4 border-t border-white/5 mt-4">
               <a
                 href="/resume.pdf"
-                className="flex items-center justify-center space-x-2 w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold shadow-lg"
+                className="flex items-center justify-center space-x-2 w-full px-5 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium text-base shadow-lg"
+                onClick={() => setIsMobileMenuOpen(false)}
               >
                 <Download size={18} />
                 <span>Download Resume</span>
@@ -149,16 +127,8 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      </nav>
-
-      {/* Skip to Content Link for Accessibility */}
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only fixed top-4 left-4 z-[1000] px-4 py-3 bg-white text-gray-900 rounded-xl shadow-2xl font-medium border border-gray-200"
-      >
-        Skip to content
-      </a>
-    </>
+      )}
+    </nav>
   );
 };
 

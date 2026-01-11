@@ -1,140 +1,159 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, ExternalLink, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Github, Twitter, Instagram, Sparkles, Send } from 'lucide-react';
 
 const ContactSection = () => {
   return (
-    <section id="contact" className="py-20 md:py-32 bg-background relative overflow-hidden">
-      {/* Background Accents */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-blue/10 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-purple/10 rounded-full blur-[120px] -z-10 -translate-x-1/2 translate-y-1/2"></div>
-
-      <div className="container px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-16 md:mb-24">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            <span className="text-gradient">Get In Touch</span>
+    <section id="contact" className="section-padding py-[120px] bg-[#111827] relative overflow-hidden">
+      {/* Background Decorative Elements */}
+      <div className="absolute top-20 right-10 w-72 h-72 bg-blue-500/5 rounded-full blur-[100px]"></div>
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-purple-500/5 rounded-full blur-[100px]"></div>
+      
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-[3rem] font-bold mb-4 tracking-tight leading-[1.2]">
+            <span className="text-gradient relative">
+              Get In Touch
+              <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></span>
+            </span>
           </h2>
-          <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Let&apos;s connect!
+          <p className="text-[#9CA3AF] text-lg max-w-2xl mx-auto mt-6">
+            Have a project in mind or want to collaborate? Let's connect!
           </p>
           <div className="mt-8 flex justify-center space-x-2">
-            <div className="w-3 h-3 bg-brand-blue rounded-full"></div>
-            <div className="w-20 h-1 bg-gradient-to-r from-brand-blue to-brand-purple rounded-full self-center"></div>
-            <div className="w-3 h-3 bg-brand-purple rounded-full"></div>
+            <div className="w-3 h-3 bg-[#2563EB] rounded-full"></div>
+            <div className="w-20 h-1 bg-gradient-to-r from-[#2563EB] to-[#9333EA] rounded-full self-center"></div>
+            <div className="w-3 h-3 bg-[#9333EA] rounded-full"></div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Contact Information & CTA */}
-          <div className="lg:col-span-12">
-            <div className="glass-panel rounded-3xl p-8 md:p-12 overflow-hidden relative group">
-              {/* Subtle mesh background for card */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 via-transparent to-purple-600/5 pointer-events-none"></div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          {/* Left Column: CTA & Connect */}
+          <div className="space-y-10">
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
+                <span className="w-8 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-3"></span>
+                Let's work together
+              </h3>
+              <p className="text-[#9CA3AF] text-lg leading-relaxed mb-8">
+                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out through any of the channels below.
+              </p>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
-                <div className="space-y-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Email Card */}
+                <a 
+                  href="mailto:contact@sauravraj.com" 
+                  className="glass-card group p-6 flex items-start space-x-4 hover:translate-y-[-8px] transition-all duration-300"
+                >
+                  <div className="p-3 bg-blue-900/30 rounded-xl text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                    <Mail size={24} />
+                  </div>
                   <div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                      Let&apos;s work together
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed text-lg">
-                      I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out through any of the channels below.
-                    </p>
+                    <h4 className="text-white font-semibold mb-1">Email</h4>
+                    <p className="text-sm text-[#9CA3AF]">raj.saurav@niet.co.in</p>
                   </div>
+                </a>
 
-                  <div className="space-y-6">
-                    <a 
-                      href="mailto:sauravraj1603@gmail.com" 
-                      className="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-blue/50 hover:bg-white/10 transition-all group/item"
-                    >
-                      <div className="w-12 h-12 rounded-xl bg-brand-blue/20 flex items-center justify-center text-brand-blue group-hover/item:scale-110 transition-transform">
-                        <Mail size={24} />
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium text-muted-foreground">Email</p>
-                        <p className="text-foreground font-semibold">sauravraj1603@gmail.com</p>
-                      </div>
-                    </a>
-
-                    <div className="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 border border-white/10">
-                      <div className="w-12 h-12 rounded-xl bg-brand-purple/20 flex items-center justify-center text-brand-purple">
-                        <Phone size={24} />
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium text-muted-foreground">Phone</p>
-                        <p className="text-foreground font-semibold">+91 91555 XXXXX</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center space-x-4 p-4 rounded-2xl bg-white/5 border border-white/10">
-                      <div className="w-12 h-12 rounded-xl bg-brand-cyan/20 flex items-center justify-center text-brand-cyan">
-                        <MapPin size={24} />
-                      </div>
-                      <div>
-                        <p className="text-sm font-medium text-muted-foreground">Location</p>
-                        <p className="text-foreground font-semibold">Muzaffarpur, Bihar, India</p>
-                      </div>
-                    </div>
+                {/* Phone Card */}
+                <a 
+                  href="tel:+910000000000" 
+                  className="glass-card group p-6 flex items-start space-x-4 hover:translate-y-[-8px] transition-all duration-300"
+                >
+                  <div className="p-3 bg-purple-900/30 rounded-xl text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                    <Phone size={24} />
                   </div>
-                </div>
-
-                <div className="flex flex-col justify-between">
-                  <div className="space-y-8">
-                    <h4 className="text-xl font-bold text-foreground flex items-center">
-                      <span className="w-8 h-1 bg-gradient-to-r from-brand-blue to-brand-purple rounded-full mr-3"></span>
-                      Social Media
-                    </h4>
-                    <p className="text-muted-foreground italic">
-                      Connect with me on social media
-                    </p>
-                    
-                    <div className="grid grid-cols-2 gap-4">
-                      <a 
-                        href="https://linkedin.com/in/sauravraj1603" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center space-x-2 py-4 px-6 rounded-2xl bg-[#0077b5]/10 border border-[#0077b5]/20 text-[#0077b5] hover:bg-[#0077b5]/20 transition-all"
-                      >
-                        <Linkedin size={20} />
-                        <span className="font-semibold">LinkedIn</span>
-                      </a>
-                      <a 
-                        href="https://github.com/Saurav1603" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center space-x-2 py-4 px-6 rounded-2xl bg-white/5 border border-white/10 text-foreground hover:bg-white/10 transition-all"
-                      >
-                        <Github size={20} />
-                        <span className="font-semibold">GitHub</span>
-                      </a>
-                    </div>
+                  <div>
+                    <h4 className="text-white font-semibold mb-1">Phone</h4>
+                    <p className="text-sm text-[#9CA3AF]">+91 123 456 7890</p>
                   </div>
+                </a>
 
-                  <div className="mt-8">
-                    <a 
-                      href="mailto:sauravraj1603@gmail.com"
-                      className="inline-flex items-center justify-center space-x-2 w-full px-8 py-4 bg-gradient-to-r from-brand-blue to-brand-purple text-white rounded-2xl font-bold text-lg hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] transition-all transform active:scale-95"
-                    >
-                      <Send size={20} />
-                      <span>Send a Message</span>
-                    </a>
+                {/* Location Card (Full Width in Inner Grid) */}
+                <div 
+                  className="glass-card group p-6 flex items-start space-x-4 sm:col-span-2 hover:translate-y-[-8px] transition-all duration-300"
+                >
+                  <div className="p-3 bg-cyan-900/30 rounded-xl text-cyan-400 group-hover:bg-cyan-500 group-hover:text-white transition-colors">
+                    <MapPin size={24} />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-semibold mb-1">Location</h4>
+                    <p className="text-sm text-[#9CA3AF]">Muzaffarpur, Bihar, India</p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Footer info */}
-        <div className="mt-20 pt-8 border-t border-white/5 text-center">
-          <p className="text-muted-foreground text-sm">
-            © {new Date().getFullYear()} Saurav Raj. All rights reserved.
-          </p>
-          <div className="flex justify-center space-x-6 mt-4">
-            <a href="#home" className="text-sm text-muted-foreground hover:text-brand-blue transition-colors">Home</a>
-            <a href="#about" className="text-sm text-muted-foreground hover:text-brand-blue transition-colors">About</a>
-            <a href="#projects" className="text-sm text-muted-foreground hover:text-brand-blue transition-colors">Projects</a>
-            <a href="#contact" className="text-sm text-muted-foreground hover:text-brand-blue transition-colors">Contact</a>
+            {/* Social Connectivity */}
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-6">Connect with me on social media</h4>
+              <div className="flex flex-wrap gap-4">
+                {[
+                  { icon: <Github size={20} />, href: "https://github.com/Saurav1603", label: "GitHub" },
+                  { icon: <Linkedin size={20} />, href: "https://linkedin.com", label: "LinkedIn" },
+                  { icon: <Twitter size={20} />, href: "https://twitter.com", label: "Twitter" },
+                  { icon: <Instagram size={20} />, href: "https://instagram.com", label: "Instagram" }
+                ].map((social, idx) => (
+                  <a
+                    key={idx}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-4 bg-[rgba(31,41,55,0.5)] border border-[rgba(255,255,255,0.1)] rounded-2xl text-[#9CA3AF] hover:text-white hover:border-[#2563EB] hover:bg-[#2563EB]/10 transition-all duration-300"
+                    aria-label={social.label}
+                  >
+                    {social.icon}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column: Mini Lead Capture / Interactive Form Placeholder */}
+          <div className="relative">
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-[1.6rem] blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+            <div className="relative glass-card p-8 lg:p-10">
+              <div className="flex items-center space-x-3 mb-8">
+                <div className="p-2 bg-yellow-500/10 rounded-lg">
+                  <Sparkles size={20} className="text-yellow-500" />
+                </div>
+                <h3 className="text-xl font-bold text-white">Send Message</h3>
+              </div>
+              
+              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-[#9CA3AF] ml-1">Full Name</label>
+                  <input 
+                    type="text" 
+                    placeholder="John Doe" 
+                    className="w-full bg-[#111827] border border-[rgba(255,255,255,0.1)] rounded-xl px-4 py-3 text-white placeholder-[#4B5563] focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-all"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-[#9CA3AF] ml-1">Email Address</label>
+                  <input 
+                    type="email" 
+                    placeholder="john@example.com" 
+                    className="w-full bg-[#111827] border border-[rgba(255,255,255,0.1)] rounded-xl px-4 py-3 text-white placeholder-[#4B5563] focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-all"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-[#9CA3AF] ml-1">Message</label>
+                  <textarea 
+                    rows={4} 
+                    placeholder="Tell me about your project..." 
+                    className="w-full bg-[#111827] border border-[rgba(255,255,255,0.1)] rounded-xl px-4 py-3 text-white placeholder-[#4B5563] focus:outline-none focus:ring-2 focus:ring-[#2563EB] transition-all resize-none"
+                  ></textarea>
+                </div>
+                
+                <button 
+                  type="submit" 
+                  className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-bold flex items-center justify-center space-x-2 hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg shadow-blue-500/20"
+                >
+                  <span>Send Message</span>
+                  <Send size={18} />
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

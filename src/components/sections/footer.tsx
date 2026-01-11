@@ -1,90 +1,133 @@
 import React from 'react';
-import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import { Github, Linkedin, Mail, Twitter, ChevronUp } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  return (
-    <footer className="bg-gray-50 dark:bg-[#111827] border-t border-gray-200 dark:border-white/10 pt-16 pb-8 transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-12">
-          {/* Brand/Logo Section */}
-          <div className="text-center md:text-left">
-            <a 
-              href="#home" 
-              className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
-            >
-              Saurav Raj
-            </a>
-            <p className="mt-2 text-gray-600 dark:text-gray-400 max-w-xs text-sm leading-relaxed">
-              Building intelligent solutions and crafting digital experiences with code and AI.
-            </p>
-          </div>
+  const navLinks = [
+    { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Experience', href: '#experience' },
+    { name: 'Education', href: '#education' },
+    { name: 'Contact', href: '#contact' },
+  ];
 
-          {/* Quick Links / Socials */}
-          <div className="flex flex-col items-center md:items-end gap-4">
-            <h4 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider">
-              Connect with me
-            </h4>
-            <div className="flex items-center space-x-4">
-              <a 
-                href="https://github.com/Saurav1603" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:shadow-lg transition-all duration-300"
-                aria-label="GitHub"
-              >
-                <Github size={20} />
-              </a>
-              <a 
-                href="https://linkedin.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:shadow-lg transition-all duration-300"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={20} />
-              </a>
-              <a 
-                href="mailto:contact@sauravraj.com" 
-                className="p-2.5 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:shadow-lg transition-all duration-300"
-                aria-label="Email"
-              >
-                <Mail size={20} />
-              </a>
-              <a 
-                href="https://twitter.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:shadow-lg transition-all duration-300"
-                aria-label="Twitter"
-              >
-                <Twitter size={20} />
-              </a>
+  const socialLinks = [
+    { icon: <Github size={20} />, href: 'https://github.com/Saurav1603', label: 'GitHub' },
+    { icon: <Linkedin size={20} />, href: 'https://linkedin.com', label: 'LinkedIn' },
+    { icon: <Twitter size={20} />, href: 'https://twitter.com', label: 'Twitter' },
+    { icon: <Mail size={20} />, href: 'mailto:contact@example.com', label: 'Email' },
+  ];
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <footer className="relative bg-[#111827] border-t border-white/10 pt-16 pb-8 overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent"></div>
+      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl"></div>
+      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          {/* Brand Identity */}
+          <div className="col-span-1 md:col-span-2">
+            <a href="#home" className="text-2xl font-bold inline-block mb-4">
+              <span className="bg-gradient-to-r from-[#2563eb] to-[#9333ea] bg-clip-text text-transparent">
+                Saurav Raj
+              </span>
+            </a>
+            <p className="text-[#9ca3af] text-lg max-w-sm mb-6 leading-relaxed">
+              Aspiring Software and AI/ML Engineer building intelligent solutions to solve real-world problems.
+            </p>
+            <div className="flex space-x-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-[#9ca3af] hover:text-white hover:border-blue-500/50 hover:bg-blue-500/10 transition-all duration-300"
+                  aria-label={social.label}
+                >
+                  {social.icon}
+                </a>
+              ))}
             </div>
           </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-white font-semibold text-lg mb-6">Quick Links</h4>
+            <ul className="space-y-4">
+              {navLinks.slice(0, 4).map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className="text-[#9ca3af] hover:text-[#2563eb] transition-colors duration-200 flex items-center group"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* More Navigation */}
+          <div>
+            <h4 className="text-white font-semibold text-lg mb-6">Explore</h4>
+            <ul className="space-y-4">
+              {navLinks.slice(4).map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className="text-[#9ca3af] hover:text-[#2563eb] transition-colors duration-200 flex items-center group"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a
+                  href="/resume.pdf"
+                  className="text-[#9ca3af] hover:text-[#2563eb] transition-colors duration-200 flex items-center group"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  Resume
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        {/* Navigation Links */}
-        <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-12 border-t border-gray-200 dark:border-white/5 pt-8">
-          {['Home', 'About', 'Skills', 'Projects', 'Experience', 'Education', 'Contact'].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-            >
-              {item}
-            </a>
-          ))}
-        </div>
+        {/* Divider */}
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8"></div>
 
-        {/* Copyright Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500 dark:text-gray-500 border-t border-gray-200 dark:border-white/5 pt-8">
-          <p>© {currentYear} Saurav Raj. All rights reserved.</p>
-          <div className="flex space-x-6">
-            <span className="hover:text-gray-700 dark:hover:text-gray-300 cursor-default transition-colors">
-              Designed & Built with ❤️
+        {/* Copyright and Bottom Area */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="text-[#9ca3af] text-sm md:text-base">
+            © {currentYear} <span className="text-white font-medium">Saurav Raj</span>. All rights reserved.
+          </div>
+          
+          <div className="flex items-center space-x-6 text-sm text-[#9ca3af]">
+            <span className="flex items-center">
+              Designed with 
+              <span className="mx-1 text-red-500 text-lg">♥</span> 
+              by Saurav
             </span>
+            <button
+              onClick={scrollToTop}
+              className="group p-2 rounded-full bg-white/5 border border-white/10 hover:border-[#2563eb]/50 hover:bg-[#2563eb]/10 transition-all duration-300"
+              aria-label="Scroll to top"
+            >
+              <ChevronUp size={20} className="text-[#9ca3af] group-hover:text-[#2563eb] transform group-hover:-translate-y-0.5 transition-all" />
+            </button>
           </div>
         </div>
       </div>

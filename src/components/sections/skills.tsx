@@ -1,23 +1,22 @@
 import React from 'react';
 import { 
   Code2, 
+  Layers, 
+  Wrench, 
+  Cloud, 
+  Library, 
   Terminal, 
   Database, 
-  Cloud, 
-  Layers, 
   Cpu, 
+  Globe, 
+  Smartphone, 
   Layout, 
-  Server, 
-  Settings, 
-  Wrench,
-  Binary,
-  Globe
+  Server
 } from 'lucide-react';
 
 interface Skill {
   name: string;
-  icon: React.ElementType;
-  description?: string;
+  icon: React.ReactNode;
 }
 
 interface SkillCategory {
@@ -29,146 +28,109 @@ const skillCategories: SkillCategory[] = [
   {
     title: "Programming Languages",
     skills: [
-      { name: "Python", icon: Code2 },
-      { name: "Java", icon: Terminal },
-      { name: "C++", icon: Binary },
-      { name: "JavaScript", icon: Code2 },
-      { name: "SQL", icon: Database },
-      { name: "HTML/CSS", icon: Globe },
+      { name: "Python", icon: <Code2 className="w-5 h-5 text-blue-500" /> },
+      { name: "Java", icon: <Terminal className="w-5 h-5 text-red-500" /> },
+      { name: "C / C++", icon: <Cpu className="w-5 h-5 text-blue-400" /> },
+      { name: "JavaScript", icon: <Globe className="w-5 h-5 text-yellow-400" /> },
+      { name: "TypeScript", icon: <Code2 className="w-5 h-5 text-blue-600" /> },
     ],
   },
   {
     title: "Frameworks",
     skills: [
-      { name: "React", icon: Layout },
-      { name: "Django", icon: Server },
-      { name: "Flask", icon: Server },
-      { name: "Bootstrap", icon: Layers },
-      { name: "Tailwind CSS", icon: Layout },
+      { name: "React.js", icon: <Layers className="w-5 h-5 text-cyan-400" /> },
+      { name: "Next.js", icon: <Layout className="w-5 h-5 text-white" /> },
+      { name: "Node.js", icon: <Server className="w-5 h-5 text-green-500" /> },
+      { name: "Django", icon: <Code2 className="w-5 h-5 text-green-700" /> },
+      { name: "Flask", icon: <Terminal className="w-5 h-5 text-gray-400" /> },
     ],
   },
   {
     title: "Developer Tools",
     skills: [
-      { name: "Git & GitHub", icon: GithubIcon },
-      { name: "VS Code", icon: Settings },
-      { name: "PyCharm", icon: Terminal },
-      { name: "Postman", icon: Wrench },
-      { name: "Docker", icon: Cloud },
+      { name: "Git & GitHub", icon: <Wrench className="w-5 h-5 text-orange-600" /> },
+      { name: "Docker", icon: <Cloud className="w-5 h-5 text-blue-500" /> },
+      { name: "VS Code", icon: <Code2 className="w-5 h-5 text-blue-400" /> },
+      { name: "Postman", icon: <Globe className="w-5 h-5 text-orange-500" /> },
+      { name: "Android Studio", icon: <Smartphone className="w-5 h-5 text-green-400" /> },
     ],
   },
   {
     title: "Cloud & Databases",
     skills: [
-      { name: "AWS", icon: Cloud },
-      { name: "MySQL", icon: Database },
-      { name: "PostgreSQL", icon: Database },
-      { name: "MongoDB", icon: Database },
-      { name: "Firebase", icon: Cloud },
+      { name: "AWS", icon: <Cloud className="w-5 h-5 text-yellow-500" /> },
+      { name: "Firebase", icon: <Database className="w-5 h-5 text-yellow-600" /> },
+      { name: "PostgreSQL", icon: <Database className="w-5 h-5 text-blue-300" /> },
+      { name: "MongoDB", icon: <Server className="w-5 h-5 text-green-600" /> },
+      { name: "SQL", icon: <Database className="w-5 h-5 text-blue-500" /> },
     ],
   },
   {
     title: "Libraries",
     skills: [
-      { name: "TensorFlow", icon: Cpu },
-      { name: "Scikit-learn", icon: Cpu },
-      { name: "NumPy", icon: Binary },
-      { name: "Pandas", icon: Binary },
-      { name: "Matplotlib", icon: Layers },
+      { name: "TensorFlow", icon: <Library className="w-5 h-5 text-orange-400" /> },
+      { name: "PyTorch", icon: <Cpu className="w-5 h-5 text-red-400" /> },
+      { name: "Scikit-learn", icon: <Library className="w-5 h-5 text-blue-400" /> },
+      { name: "NumPy", icon: <Layers className="w-5 h-5 text-blue-500" /> },
+      { name: "Pandas", icon: <Code2 className="w-5 h-5 text-purple-400" /> },
     ],
   },
 ];
-
-function GithubIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-    </svg>
-  );
-}
 
 const SkillsSection: React.FC = () => {
   return (
     <section 
       id="skills" 
-      className="py-24 md:py-32 bg-[#111827] relative overflow-hidden"
+      className="py-[120px] bg-[#111827] relative overflow-hidden mesh-gradient"
     >
-      {/* Background blobs for depth */}
-      <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16 md:mb-20">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">
+      <div className="container relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-[3rem] font-bold mb-4 tracking-tight leading-tight">
             <span className="text-gradient">Skills & Technologies</span>
           </h2>
-          <p className="text-[#9ca3af] text-lg max-w-2xl mx-auto">
-            A comprehensive overview of my technical expertise and proficiencies across various domains of software and AI engineering.
+          <p className="text-[#9CA3AF] text-lg max-w-2xl mx-auto">
+            A comprehensive overview of my technical expertise and proficiencies
           </p>
-          <div className="mt-8 flex justify-center items-center gap-3">
-            <div className="w-3 h-3 bg-[#2563eb] rounded-full" />
-            <div className="w-24 h-1 bg-gradient-to-r from-[#2563eb] to-[#9333ea] rounded-full" />
-            <div className="w-3 h-3 bg-[#9333ea] rounded-full" />
+          <div className="mt-6 flex justify-center space-x-2">
+            <div className="w-3 h-3 bg-[#2563EB] rounded-full"></div>
+            <div className="w-20 h-1 bg-gradient-to-r from-[#2563EB] to-[#9333EA] rounded-full self-center"></div>
+            <div className="w-3 h-3 bg-[#9333EA] rounded-full"></div>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, idx) => (
+          {skillCategories.map((category, index) => (
             <div 
-              key={idx}
-              className="glass-panel rounded-2xl p-8 border border-white/10 hover:border-blue-500/30 transition-all duration-300 group"
+              key={index} 
+              className="glass-card p-8 group surface-3d"
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-1.5 h-6 bg-gradient-to-b from-[#2563eb] to-[#9333ea] rounded-full" />
-                <h3 className="text-xl font-bold text-[#f9fafb]">
-                  {category.title}
-                </h3>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
+              <h3 className="text-xl font-semibold text-[#60A5FA] mb-6 flex items-center">
+                <span className="w-8 h-1 bg-gradient-to-r from-[#2563EB] to-[#9333EA] rounded-full mr-3"></span>
+                {category.title}
+              </h3>
+              
+              <div className="flex flex-wrap gap-3">
                 {category.skills.map((skill, sIdx) => (
                   <div 
                     key={sIdx}
-                    className="flex flex-col items-center justify-center p-4 rounded-xl bg-[#1f2937]/50 border border-white/5 hover:bg-[#1f2937] hover:scale-[1.05] transition-all duration-200 group/item"
+                    className="flex items-center space-x-2 px-4 py-2 bg-[rgba(31,41,55,0.5)] border border-[rgba(255,255,255,0.1)] rounded-xl hover:border-[#2563EB]/50 transition-all duration-300"
                   >
-                    <div className="p-3 bg-blue-500/10 rounded-lg mb-3 group-hover/item:bg-blue-500/20 transition-colors">
-                      <skill.icon className="w-6 h-6 text-blue-400 group-hover/item:text-blue-300 transition-colors" />
-                    </div>
-                    <span className="text-sm font-medium text-[#9ca3af] group-hover/item:text-[#f9fafb] text-center">
-                      {skill.name}
-                    </span>
+                    <span>{skill.icon}</span>
+                    <span className="text-sm font-medium text-[#F3F4F6]">{skill.name}</span>
                   </div>
                 ))}
               </div>
+              
+              {/* Subtle accent border on active/hover */}
+              <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#2563EB]/20 rounded-[1.5rem] pointer-events-none transition-colors duration-300" />
             </div>
           ))}
         </div>
-
-        {/* Floating background elements for texture */}
-        <div className="mt-20 flex justify-center">
-           <div className="px-6 py-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm flex items-center gap-4">
-             <span className="text-sm text-[#9ca3af] font-medium italic">
-               &ldquo;Always learning, always building.&rdquo;
-             </span>
-             <div className="flex -space-x-2">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="w-6 h-6 rounded-full border border-[#111827] bg-gradient-to-br from-blue-500 to-purple-500" />
-                ))}
-             </div>
-           </div>
-        </div>
       </div>
+
+      {/* Background Decorative Elements */}
+      <div className="absolute top-1/4 -left-20 w-80 h-80 bg-[#2563EB]/10 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-[#9333EA]/10 rounded-full blur-[100px] pointer-events-none"></div>
     </section>
   );
 };
