@@ -54,22 +54,23 @@ const Education = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {educationData.map((edu, index) => (
-            <motion.div 
-              key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="glass-card group p-8 rounded-[2rem] border border-white/10 flex flex-col h-full relative overflow-hidden"
-            >
-              <div className="flex items-start justify-between mb-8">
-                <div className={`p-4 rounded-2xl bg-gradient-to-br ${edu.color} text-white shadow-xl group-hover:scale-110 transition-transform`}>
-                  {edu.icon}
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="glass-card group p-8 rounded-[2rem] border border-black/5 dark:border-white/10 flex flex-col h-full relative overflow-hidden"
+              >
+                <div className="flex items-start justify-between mb-8">
+                  <div className={`p-4 rounded-2xl bg-gradient-to-br ${edu.color} text-white shadow-xl group-hover:scale-110 transition-transform`}>
+                    {edu.icon}
+                  </div>
+                  <div className="px-4 py-2 bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 rounded-full text-xs font-black tracking-widest text-foreground/50">
+                    {edu.period}
+                  </div>
                 </div>
-                <div className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-xs font-black tracking-widest text-foreground/50">
-                  {edu.period}
-                </div>
-              </div>
+
 
               <h3 className="text-2xl font-black text-foreground mb-4 leading-tight group-hover:text-indigo-400 transition-colors">
                 {edu.degree}
