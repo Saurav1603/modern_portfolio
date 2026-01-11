@@ -27,18 +27,19 @@ const ContactCard = ({
   href: string,
   delay: number
 }) => (
-  <motion.a 
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ delay }}
-    whileHover={{ y: -5 }}
-    className="glass-card group flex items-start p-8 rounded-[2rem] border border-white/10"
-  >
-    <div className="p-4 bg-indigo-500/10 rounded-2xl mr-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 text-indigo-500">
+    <motion.a 
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay }}
+      whileHover={{ y: -5 }}
+      className="glass-card group flex items-start p-8 rounded-[2rem] border border-black/5 dark:border-white/10"
+    >
+      <div className="p-4 bg-indigo-500/10 rounded-2xl mr-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 text-indigo-500">
+
       <Icon className="w-6 h-6" />
     </div>
     <div className="flex flex-col">
