@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  outputFileTracingRoot: path.resolve(__dirname, '../../'),
+  outputFileTracingRoot: process.env.NETLIFY ? path.resolve(__dirname) : path.resolve(__dirname, '../../'),
   typescript: {
     ignoreBuildErrors: true,
   },
