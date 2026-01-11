@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { 
   MapPin, 
@@ -9,194 +11,144 @@ import {
   Rocket, 
   Coffee 
 } from 'lucide-react';
+import { motion } from "framer-motion";
 
 const About = () => {
   return (
-    <section id="about" className="py-20 md:py-32 bg-white relative overflow-hidden">
-      {/* Background Decorative Elements */}
-      <div className="absolute top-20 right-10 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
-
+    <section id="about" className="py-24 md:py-32 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-[3rem] font-bold mb-4 tracking-tight leading-[1.2]">
-            <span className="text-gradient relative">
-              About Me
-              <span className="absolute -bottom-2 left-0 h-1 w-full bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></span>
-            </span>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16 md:mb-24"
+        >
+          <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter">
+            <span className="text-gradient">About Me</span>
           </h2>
-          <p className="text-[#4b5563] text-lg max-w-2xl mx-auto leading-relaxed">
-            Passionate about building intelligent solutions that make a difference
+          <p className="text-foreground/60 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+            Bridging the gap between data-driven intelligence and high-performance software engineering.
           </p>
-          <div className="mt-6 flex justify-center space-x-2">
-            <div className="w-3 h-3 bg-[#2563eb] rounded-full"></div>
-            <div className="w-20 h-1 bg-gradient-to-r from-[#2563eb] to-[#9333ea] rounded-full self-center"></div>
-            <div className="w-3 h-3 bg-[#9333ea] rounded-full"></div>
+          <div className="mt-8 flex justify-center space-x-2">
+            <div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"></div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Left Column: 3D Profile Card */}
-          <div className="relative">
-            <div className="relative w-full max-w-md mx-auto lg:sticky lg:top-24">
-              {/* Decorative background layers for 3D effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-3xl transform rotate-6 scale-105"></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-cyan-500/20 rounded-3xl transform -rotate-3 scale-105"></div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          {/* Left Column: Profile Card */}
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="relative w-full max-w-md mx-auto">
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-3xl transform rotate-3 scale-105 blur-xl"></div>
               
-              {/* Main Card */}
-              <div className="relative glass-card rounded-3xl p-8 border border-white/20">
+              <div className="relative glass-card rounded-3xl p-10 overflow-hidden">
                 <div className="text-center">
-                  <div className="w-36 h-36 mx-auto mb-6 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 p-1 shadow-2xl relative">
-                    <div className="absolute inset-0 rounded-full border-2 border-blue-400/50"></div>
-                    <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                      <span className="text-5xl font-bold text-gradient">SR</span>
-                    </div>
-                  </div>
-                  
-                  <h3 className="text-2xl font-bold text-[#111827] mb-1">Saurav Raj</h3>
-                  <p className="text-[#2563eb] font-semibold mb-6">Software Engineer & AI/ML Engineer</p>
-                  
-                  {/* Detailed Stats Info */}
-                  <div className="space-y-3 mb-6">
-                    <div className="flex items-center justify-center space-x-2 text-sm text-[#4b5563]">
-                      <MapPin size={16} className="text-[#2563eb]" />
-                      <span className="font-medium">Location:</span>
-                      <span>Bihar, India</span>
-                    </div>
-                    <div className="flex items-center justify-center space-x-2 text-sm text-[#4b5563]">
-                      <GraduationCap size={16} className="text-[#2563eb]" />
-                      <span className="font-medium">Degree:</span>
-                      <span>B.Tech CSE (AI)</span>
-                    </div>
-                    <div className="flex items-center justify-center space-x-2 text-sm text-[#4b5563]">
-                      <Briefcase size={16} className="text-[#2563eb]" />
-                      <span className="font-medium">Experience:</span>
-                      <span>2 Internships</span>
-                    </div>
-                  </div>
-
-                  {/* Horizontal Stats Grid */}
-                  <div className="grid grid-cols-3 gap-4 p-4 bg-[#f9fafb] rounded-2xl mb-6 border border-[#e5e7eb]">
-                    <div className="text-center">
-                      <p className="text-3xl font-bold text-gradient">2+</p>
-                      <p className="text-[10px] uppercase tracking-wider text-[#6b7280] font-semibold mt-1">Projects</p>
-                    </div>
-                    <div className="text-center border-x border-[#e5e7eb]">
-                      <p className="text-3xl font-bold text-gradient">2</p>
-                      <p className="text-[10px] uppercase tracking-wider text-[#6b7280] font-semibold mt-1">Internships</p>
-                    </div>
-                    <div className="text-center">
-                      <p className="text-3xl font-bold text-gradient">15+</p>
-                      <p className="text-[10px] uppercase tracking-wider text-[#6b7280] font-semibold mt-1">Techs</p>
-                    </div>
-                  </div>
-
-                  <a 
-                    href="/resume.pdf" 
-                    className="inline-flex items-center justify-center space-x-2 w-full px-6 py-3.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl relative overflow-hidden group"
+                  <motion.div 
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="w-40 h-40 mx-auto mb-8 rounded-2xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-1 shadow-2xl relative"
                   >
-                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
-                    <Download size={18} />
+                    <div className="w-full h-full rounded-2xl bg-background flex items-center justify-center">
+                      <span className="text-5xl font-black text-gradient">SR</span>
+                    </div>
+                  </motion.div>
+                  
+                  <h3 className="text-3xl font-black text-foreground mb-2">Saurav Raj</h3>
+                  <p className="text-indigo-500 dark:text-indigo-400 font-bold mb-8 uppercase tracking-widest text-sm">Software & AI Engineer</p>
+                  
+                  <div className="space-y-4 mb-8">
+                    <div className="flex items-center justify-center space-x-3 text-foreground/70">
+                      <MapPin size={18} className="text-indigo-500" />
+                      <span className="font-semibold">Bihar, India</span>
+                    </div>
+                    <div className="flex items-center justify-center space-x-3 text-foreground/70">
+                      <GraduationCap size={18} className="text-indigo-500" />
+                      <span className="font-semibold">B.Tech CSE (AI)</span>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-4 p-6 bg-white/5 rounded-2xl mb-8 border border-white/10">
+                    <div>
+                      <p className="text-2xl font-black text-gradient">2+</p>
+                      <p className="text-[10px] uppercase tracking-widest text-foreground/50 font-bold mt-1">Projects</p>
+                    </div>
+                    <div className="border-x border-white/10">
+                      <p className="text-2xl font-black text-gradient">2</p>
+                      <p className="text-[10px] uppercase tracking-widest text-foreground/50 font-bold mt-1">Internships</p>
+                    </div>
+                    <div>
+                      <p className="text-2xl font-black text-gradient">15+</p>
+                      <p className="text-[10px] uppercase tracking-widest text-foreground/50 font-bold mt-1">Tools</p>
+                    </div>
+                  </div>
+
+                  <motion.a 
+                    href="/resume.pdf" 
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex items-center justify-center space-x-3 w-full py-4 bg-indigo-600 text-white rounded-2xl font-bold shadow-xl shadow-indigo-500/20 group"
+                  >
+                    <Download size={20} className="group-hover:animate-bounce" />
                     <span>Download Resume</span>
-                  </a>
+                  </motion.a>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Column: Narrative & Services */}
-          <div className="space-y-10">
+          {/* Right Column: Narrative */}
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-12"
+          >
             <div>
-              <h3 className="text-3xl font-bold text-[#111827] mb-6">
-                Building the Future with <span className="text-gradient">Code & AI</span>
+              <h3 className="text-4xl font-black text-foreground mb-8 tracking-tighter">
+                Crafting <span className="text-gradient">Intelligent</span> Systems
               </h3>
-              <div className="space-y-4 text-[#4b5563] leading-relaxed text-lg">
+              <div className="space-y-6 text-foreground/70 leading-relaxed text-lg font-medium">
                 <p>
-                  Hi there! I'm <span className="text-[#111827] font-semibold">Saurav Raj</span>, a dedicated Software Engineer and AI/ML enthusiast currently in my final years of{' '}
-                  <span className="text-[#2563eb] font-medium">B.Tech in Computer Science (AI)</span> at Noida Institute of Engineering and Technology.
+                  I am a forward-thinking <span className="text-foreground">Software Engineer</span> with a deep focus on <span className="text-indigo-500">Artificial Intelligence</span>. Currently completing my B.Tech in CSE (AI), I specialize in building systems that don't just work, but learn and adapt.
                 </p>
                 <p>
-                  My journey began with a <span className="text-[#2563eb] font-medium">Diploma in Computer Science</span>, where I discovered my passion for creating impactful software. Today, I specialize in building{' '}
-                  <span className="text-[#111827] font-medium">machine learning models</span>,{' '}
-                  <span className="text-[#111827] font-medium">full-stack web applications</span>, and{' '}
-                  <span className="text-[#111827] font-medium">data-driven solutions</span>.
-                </p>
-                <p>
-                  I've had the opportunity to work as an <span className="text-[#111827] font-medium">AIML Intern at YBI Foundation</span>, where I built recommendation systems, and as an <span className="text-[#111827] font-medium">Android Developer at GOWOX Infotech</span>, crafting intuitive mobile experiences.
+                  My expertise spans from <span className="text-foreground">Full-Stack development</span> to <span className="text-foreground">Machine Learning engineering</span>. I've successfully delivered projects in recommendation systems and stock market prediction, blending mathematical rigor with architectural excellence.
                 </p>
               </div>
             </div>
 
-            <div>
-              <h4 className="text-xl font-bold text-[#111827] mb-6 flex items-center">
-                <span className="w-8 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mr-3"></span>
-                What I Do
-              </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {/* Service Card 1 */}
-                <div className="p-5 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-blue-200 transition-all group shadow-sm hover:shadow-lg h-full">
-                  <div className="flex items-start space-x-4">
-                    <div className="p-3 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
-                      <CodeXml className="w-6 h-6 text-[#2563eb]" />
-                    </div>
-                    <div>
-                      <h5 className="font-bold text-[#111827] mb-1 group-hover:text-[#2563eb] transition-colors">Full-Stack Development</h5>
-                      <p className="text-sm text-[#4b5563]">React, Node.js, Django, Flask & modern web technologies.</p>
-                    </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {[
+                { icon: CodeXml, title: "Full-Stack Dev", desc: "React, Node.js, Django" },
+                { icon: Brain, title: "AI/ML Engineering", desc: "TensorFlow, PyTorch, Sklearn" },
+                { icon: Rocket, title: "Scalable Apps", desc: "System Design & Cloud" },
+                { icon: Coffee, title: "Deep Learning", desc: "Neural Networks & NLP" }
+              ].map((service, i) => (
+                <motion.div 
+                  key={i}
+                  whileHover={{ y: -5 }}
+                  className="p-6 glass-card rounded-2xl group"
+                >
+                  <div className="p-3 bg-indigo-500/10 rounded-xl w-fit mb-4 group-hover:bg-indigo-500/20 transition-colors">
+                    <service.icon className="w-6 h-6 text-indigo-500" />
                   </div>
-                </div>
-
-                {/* Service Card 2 */}
-                <div className="p-5 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-blue-200 transition-all group shadow-sm hover:shadow-lg h-full">
-                  <div className="flex items-start space-x-4">
-                    <div className="p-3 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
-                      <Brain className="w-6 h-6 text-[#2563eb]" />
-                    </div>
-                    <div>
-                      <h5 className="font-bold text-[#111827] mb-1 group-hover:text-[#2563eb] transition-colors">AI/ML Engineering</h5>
-                      <p className="text-sm text-[#4b5563]">TensorFlow, Keras, Scikit-learn & deep learning models.</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Service Card 3 */}
-                <div className="p-5 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-blue-200 transition-all group shadow-sm hover:shadow-lg h-full">
-                  <div className="flex items-start space-x-4">
-                    <div className="p-3 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
-                      <Rocket className="w-6 h-6 text-[#2563eb]" />
-                    </div>
-                    <div>
-                      <h5 className="font-bold text-[#111827] mb-1 group-hover:text-[#2563eb] transition-colors">Problem Solving</h5>
-                      <p className="text-sm text-[#4b5563]">Data structures, algorithms & scalable solutions.</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Service Card 4 */}
-                <div className="p-5 bg-gradient-to-br from-gray-50 to-white rounded-xl border border-gray-100 hover:border-blue-200 transition-all group shadow-sm hover:shadow-lg h-full">
-                  <div className="flex items-start space-x-4">
-                    <div className="p-3 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors">
-                      <Coffee className="w-6 h-6 text-[#2563eb]" />
-                    </div>
-                    <div>
-                      <h5 className="font-bold text-[#111827] mb-1 group-hover:text-[#2563eb] transition-colors">Continuous Learning</h5>
-                      <p className="text-sm text-[#4b5563]">Always exploring cutting-edge technologies.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                  <h5 className="font-bold text-lg text-foreground mb-1">{service.title}</h5>
+                  <p className="text-sm text-foreground/50 font-medium">{service.desc}</p>
+                </motion.div>
+              ))}
             </div>
 
-            {/* Quote Block */}
-            <div className="relative p-8 bg-blue-50/50 rounded-2xl border-l-4 border-blue-600">
-              <span className="absolute top-2 left-4 text-6xl text-blue-200 font-serif leading-none">“</span>
-              <p className="relative z-10 text-gray-700 italic text-lg lg:text-xl">
-                I believe in writing clean code that not only works but tells a story. Every project is an opportunity to learn something new and make a positive impact.
+            <div className="relative p-8 bg-indigo-500/5 rounded-3xl border border-indigo-500/20">
+              <p className="text-foreground/80 italic text-xl font-medium leading-relaxed">
+                "I believe the most powerful applications are those that use data to create seamless, intuitive experiences that feel like magic."
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
