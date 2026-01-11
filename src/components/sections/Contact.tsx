@@ -1,165 +1,139 @@
 "use client";
 
 import React from 'react';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Github, 
-  Linkedin, 
-  Twitter, 
-  MessageSquare, 
-  ArrowUp,
-  Send
-} from 'lucide-react';
+import { Mail, Github, Linkedin, Twitter, ArrowRight, ExternalLink, Send, Sparkles } from 'lucide-react';
 import { motion } from "framer-motion";
 
-const ContactCard = ({ 
-  icon: Icon, 
-  title, 
-  value, 
-  href, 
-  delay 
-}: { 
-  icon: any, 
-  title: string, 
-  value: string, 
-  href: string,
-  delay: number
-}) => (
-    <motion.a 
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay }}
-      whileHover={{ y: -5 }}
-      className="glass-card group flex items-start p-8 rounded-[2rem] border border-black/5 dark:border-white/10"
-    >
-      <div className="p-4 bg-indigo-500/10 rounded-2xl mr-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 text-indigo-500">
-
-      <Icon className="w-6 h-6" />
-    </div>
-    <div className="flex flex-col">
-      <span className="text-xs font-black text-foreground/40 uppercase tracking-widest mb-1">
-        {title}
-      </span>
-      <span className="text-lg font-bold text-foreground group-hover:text-indigo-400 transition-colors">
-        {value}
-      </span>
-    </div>
-  </motion.a>
-);
-
 export default function Contact() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const socials = [
+    {
+      name: "LinkedIn",
+      icon: Linkedin,
+      href: "https://linkedin.com/in/saurav-raj",
+      desc: "Professional Network",
+      color: "bg-blue-500/10 text-blue-500"
+    },
+    {
+      name: "GitHub",
+      icon: Github,
+      href: "https://github.com/Saurav1603",
+      desc: "Code & Projects",
+      color: "bg-foreground/5 text-foreground/70"
+    },
+    {
+      name: "Twitter",
+      icon: Twitter,
+      href: "https://twitter.com",
+      desc: "Latest Updates",
+      color: "bg-sky-400/10 text-sky-400"
+    }
+  ];
 
   return (
-    <footer id="contact" className="relative py-24 md:py-32 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Section Heading */}
+    <section id="contact" className="py-24 md:py-32 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16 md:mb-24"
+          className="text-center mb-24"
         >
-          <motion.div 
-            whileHover={{ scale: 1.05 }}
-            className="inline-flex items-center space-x-2 px-4 py-2 bg-indigo-500/10 rounded-full border border-indigo-500/20 mb-8"
-          >
-            <span className="flex h-2 w-2 rounded-full bg-indigo-500 animate-ping" />
-            <span className="text-sm font-bold text-indigo-400 uppercase tracking-widest">Get In Touch</span>
-          </motion.div>
-          <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter">
-            <span className="text-gradient">Let's build something great.</span>
+          <div className="inline-flex items-center space-x-2 px-4 py-2 bg-indigo-500/10 rounded-full mb-6 border border-indigo-500/20">
+            <Send className="w-4 h-4 text-indigo-500" />
+            <span className="text-sm font-black text-indigo-500 uppercase tracking-widest">Inquire</span>
+          </div>
+          <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter">
+            Let's Start a <span className="text-gradient">Conversation</span>
           </h2>
-          <p className="max-w-2xl mx-auto text-xl text-foreground/60 leading-relaxed font-medium">
-            Currently seeking new opportunities to innovate and contribute to cutting-edge AI and software projects.
+          <p className="text-foreground/60 text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+            Ready to collaborate on the next big thing? My inbox is always open for interesting projects and technical discussions.
           </p>
         </motion.div>
 
-        {/* Contact Links Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-          <ContactCard
-            icon={Mail}
-            title="Email"
-            value="sauravraj1603@gmail.com"
-            href="mailto:sauravraj1603@gmail.com"
-            delay={0.1}
-          />
-          <ContactCard
-            icon={Phone}
-            title="Phone"
-            value="+91 8292416705"
-            href="tel:+918292416705"
-            delay={0.2}
-          />
-          <ContactCard
-            icon={MapPin}
-            title="Location"
-            value="Bihar, India"
-            href="https://www.google.com/maps/search/?api=1&query=Bihar,India"
-            delay={0.3}
-          />
-        </div>
-
-        {/* Footer Bottom Area */}
-        <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-12">
-          <div className="text-center md:text-left">
-            <h3 className="text-3xl font-black text-gradient mb-2 tracking-tighter">
-              SAURAV.
-            </h3>
-            <p className="text-foreground/40 text-sm font-bold uppercase tracking-widest">
-              Software & AI Engineer
-            </p>
-          </div>
-
-          <div className="flex flex-col items-center gap-6">
-            <span className="text-[10px] font-black text-foreground/30 uppercase tracking-[0.3em]">
-              Connect
-            </span>
-            <div className="flex items-center space-x-6">
-              {[
-                { icon: Github, href: "https://github.com/Saurav1603" },
-                { icon: Linkedin, href: "https://linkedin.com/in/saurav-raj" },
-                { icon: Twitter, href: "#" },
-                { icon: MessageSquare, href: "https://wa.me/918292416705" }
-              ].map((social, i) => (
-                <motion.a
-                  key={i}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ y: -5, scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="w-12 h-12 flex items-center justify-center rounded-2xl glass-card text-foreground/50 hover:text-indigo-500 transition-colors"
-                >
-                  <social.icon className="w-5 h-5" />
-                </motion.a>
-              ))}
-            </div>
-          </div>
-
-          <motion.button 
-            onClick={scrollToTop}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+          {/* Direct Contact Card */}
+          <motion.a 
+            href="mailto:rajsaurav1603@gmail.com"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             whileHover={{ y: -5 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center space-x-3 px-8 py-4 glass-card rounded-2xl text-foreground/60 font-bold hover:text-indigo-500"
+            className="group relative glass-card rounded-[3rem] p-12 overflow-hidden flex flex-col justify-between"
           >
-            <span className="text-sm">Back to Top</span>
-            <ArrowUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
-          </motion.button>
+            <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-500">
+              <Mail className="w-48 h-48 text-indigo-500 rotate-12 group-hover:rotate-0 transition-transform" />
+            </div>
+
+            <div>
+              <div className="p-4 bg-indigo-500/10 rounded-2xl w-fit mb-10 group-hover:scale-110 transition-transform">
+                <Mail className="w-8 h-8 text-indigo-500" />
+              </div>
+              <h3 className="text-3xl font-black text-foreground mb-4">Send an Email</h3>
+              <p className="text-foreground/50 text-lg font-bold mb-10 max-w-xs">
+                I typically respond within 24 hours. Looking forward to hearing from you!
+              </p>
+            </div>
+
+            <div className="flex items-center justify-between mt-auto">
+              <span className="text-2xl sm:text-3xl font-black text-foreground group-hover:text-indigo-500 transition-colors">
+                rajsaurav1603@gmail.com
+              </span>
+              <div className="p-4 bg-indigo-500 text-white rounded-full group-hover:translate-x-2 transition-transform shadow-xl shadow-indigo-500/20">
+                <ArrowRight className="w-6 h-6" />
+              </div>
+            </div>
+          </motion.a>
+
+          {/* Socials Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {socials.map((social, i) => (
+              <motion.a
+                key={i}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -5 }}
+                className={`glass-card rounded-[2.5rem] p-8 group flex flex-col justify-between ${i === 2 ? 'sm:col-span-2' : ''}`}
+              >
+                <div className="flex justify-between items-start mb-10">
+                  <div className={`p-4 ${social.color} rounded-2xl group-hover:scale-110 transition-transform`}>
+                    <social.icon className="w-6 h-6" />
+                  </div>
+                  <ExternalLink className="w-5 h-5 text-foreground/20 group-hover:text-indigo-500 transition-colors" />
+                </div>
+                <div>
+                  <h4 className="text-2xl font-black text-foreground mb-1">{social.name}</h4>
+                  <p className="text-foreground/40 font-bold uppercase tracking-widest text-[10px]">{social.desc}</p>
+                </div>
+              </motion.a>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-20 text-center text-foreground/20 text-xs font-bold tracking-widest uppercase">
-          <p>© {new Date().getFullYear()} Saurav Raj • Crafted with precision</p>
-        </div>
+        {/* Footer */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-32 pt-16 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8 text-foreground/40 font-black uppercase tracking-widest text-[10px]"
+        >
+          <p>© {new Date().getFullYear()} Saurav Raj. Built with Passion & Intelligence.</p>
+          <div className="flex space-x-8">
+            <a href="#about" className="hover:text-indigo-500 transition-colors">About</a>
+            <a href="#projects" className="hover:text-indigo-500 transition-colors">Projects</a>
+            <a href="#skills" className="hover:text-indigo-500 transition-colors">Skills</a>
+          </div>
+          <div className="flex items-center space-x-2">
+            <span>Bihar, India</span>
+            <div className="w-1 h-1 bg-indigo-500 rounded-full" />
+            <span>UTC +5:30</span>
+          </div>
+        </motion.div>
       </div>
-    </footer>
+    </section>
   );
 }
