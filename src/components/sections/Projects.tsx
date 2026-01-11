@@ -102,7 +102,9 @@ const ProjectCard = ({ project, index }: any) => (
 
       <div className="flex flex-wrap items-center gap-6 pt-4">
         <motion.a 
-          href="#" 
+          href={project.github} 
+          target="_blank"
+          rel="noopener noreferrer"
           whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.98 }}
           className="flex-1 sm:flex-none inline-flex items-center justify-center space-x-3 px-8 py-4 bg-foreground text-background rounded-2xl font-black shadow-2xl transition-all"
@@ -138,6 +140,7 @@ export default function Projects() {
       lightBg: "bg-blue-50/50",
       darkBg: "dark:bg-blue-900/10",
       icon: <Monitor className="w-8 h-8" />,
+      github: "https://github.com/Saurav1603/Movie-recommendation-system",
     },
     {
       id: "stock-pred",
@@ -151,6 +154,7 @@ export default function Projects() {
       lightBg: "bg-purple-50/50",
       darkBg: "dark:bg-purple-900/10",
       icon: <Layers className="w-8 h-8" />,
+      github: "https://github.com/Saurav1603/stock_predictor_app",
     }
   ];
 

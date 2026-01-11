@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Mail, Github, Linkedin, Twitter, ArrowRight, ExternalLink, Send, Sparkles } from 'lucide-react';
+import { Mail, Github, Linkedin, Twitter, ArrowRight, ExternalLink, Send, Sparkles, Phone } from 'lucide-react';
 import { motion } from "framer-motion";
 
 export default function Contact() {
@@ -9,9 +9,16 @@ export default function Contact() {
     {
       name: "LinkedIn",
       icon: Linkedin,
-      href: "https://linkedin.com/in/saurav-raj",
+      href: "https://www.linkedin.com/in/saurav-raj-2b37a5296",
       desc: "Professional Network",
       color: "bg-blue-500/10 text-blue-500"
+    },
+    {
+      name: "Phone",
+      icon: Phone,
+      href: "tel:+917390823762",
+      desc: "Direct Call",
+      color: "bg-emerald-500/10 text-emerald-500"
     },
     {
       name: "GitHub",

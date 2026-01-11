@@ -9,7 +9,8 @@ import {
   ArrowDown,
   Cpu,
   Globe,
-  Zap
+  Zap,
+  FileText
 } from "lucide-react";
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from "framer-motion";
 
@@ -199,30 +200,41 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <motion.a 
-              href="#contact" 
-              whileHover={{ scale: 1.05, y: -4 }}
-              whileTap={{ scale: 0.98 }}
-              className="group px-10 py-5 bg-indigo-600 text-white rounded-2xl font-black text-lg transition-all shadow-2xl shadow-indigo-500/40 flex items-center space-x-3"
-            >
-              <Mail className="w-6 h-6 group-hover:rotate-12 transition-transform" />
-              <span>Let's Connect</span>
-            </motion.a>
-            
-            <motion.a 
-              href="https://github.com/Saurav1603" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.05, y: -4 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-10 py-5 glass-card rounded-2xl font-black text-lg flex items-center space-x-3"
-            >
-              <Github className="w-6 h-6" />
-              <span>Source Code</span>
-            </motion.a>
-          </div>
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+              <motion.a 
+                href="#contact" 
+                whileHover={{ scale: 1.05, y: -4 }}
+                whileTap={{ scale: 0.98 }}
+                className="group px-10 py-5 bg-indigo-600 text-white rounded-2xl font-black text-lg transition-all shadow-2xl shadow-indigo-500/40 flex items-center space-x-3"
+              >
+                <Mail className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+                <span>Let's Connect</span>
+              </motion.a>
+              
+              <motion.a 
+                href="/SauravRaj_Resume.pdf" 
+                download
+                whileHover={{ scale: 1.05, y: -4 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-10 py-5 bg-foreground text-background rounded-2xl font-black text-lg flex items-center space-x-3 transition-all shadow-2xl"
+              >
+                <FileText className="w-6 h-6" />
+                <span>Download Resume</span>
+              </motion.a>
+
+              <motion.a 
+                href="https://github.com/Saurav1603" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05, y: -4 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-10 py-5 glass-card rounded-2xl font-black text-lg flex items-center space-x-3"
+              >
+                <Github className="w-6 h-6" />
+                <span>Source</span>
+              </motion.a>
+            </div>
         </motion.div>
 
         {/* Scroll Indicator */}
