@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { 
   Sparkles, 
   MapPin, 
@@ -8,23 +8,14 @@ import {
   Github, 
   ArrowDown 
 } from "lucide-react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 
-/**
- * Hero Section Component
- * 
- * Includes:
- * - Mesh gradient background
- * - Floating geometric glassmorphism shapes
- * - Typing effect for role
- * - "Available for opportunities" badge
- * - Gradient heading
- * - Primary CTA buttons
- */
 export default function Hero() {
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
+  const heroRef = useRef(null);
 
   const roles = ["Software Engineer", "AI/ML Engineer", "Full-Stack Developer"];
   const period = 2000;
@@ -52,117 +43,185 @@ export default function Hero() {
 
     const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
-  }, [text, isDeleting, loopNum, typingSpeed]);
+  }, [text, isDeleting, loopNum, typingSpeed, roles]);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.8], [1, 0.9]);
+
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const springConfig = { damping: 25, stiffness: 150 };
+  const mouseXSpring = useSpring(mousePosition.x, springConfig);
+  const mouseYSpring = useSpring(mousePosition.y, springConfig);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   return (
     <section 
       id="home" 
+      ref={heroRef}
       className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16"
-      style={{ backgroundColor: "rgb(249, 250, 251)" }}
     >
+      {/* Interactive Cursor Spotlight */}
+      <motion.div 
+        className="pointer-events-none fixed inset-0 z-30 opacity-40 mix-blend-soft-light"
+        style={{
+          background: useTransform(
+            [mouseXSpring, mouseYSpring],
+            ([x, y]) => `radial-gradient(600px circle at ${x}px ${y}px, rgba(99, 102, 241, 0.15), transparent 80%)`
+          ),
+        }}
+      />
+
       {/* Mesh Background Layers */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-cyan-50 opacity-100" />
+      <div className="absolute inset-0 bg-background" />
       
       {/* Animated Mesh Blobs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
-        <div className="absolute top-1/4 -left-1/4 w-[500px] h-[500px] bg-blue-400/20 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-1/4 -right-1/4 w-[600px] h-[600px] bg-purple-400/20 rounded-full blur-[120px] animate-pulse transition-all duration-1000" />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+        <motion.div 
+          animate={{
+            x: [0, 100, 0],
+            y: [0, 50, 0],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-indigo-500/30 rounded-full blur-[120px]" 
+        />
+        <motion.div 
+          animate={{
+            x: [0, -100, 0],
+            y: [0, -50, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-1/4 -right-1/4 w-[700px] h-[700px] bg-purple-500/30 rounded-full blur-[120px]" 
+        />
       </div>
 
-      {/* Floating Geometric Glassmorphism Shapes */}
+      {/* Floating Geometric Shapes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Cube-like shape */}
-        <div className="absolute top-20 left-10 w-20 h-20 md:w-32 md:h-32 transform hover:rotate-12 transition-transform duration-700">
-          <div className="w-full h-full bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-2xl backdrop-blur-md border border-white/40 shadow-xl" />
-        </div>
-        
-        {/* Sphere-like shape */}
-        <div className="absolute top-40 right-20 w-16 h-16 md:w-24 md:h-24 animate-bounce [animation-duration:4s]">
-          <div className="w-full h-full bg-gradient-to-br from-purple-500/10 to-cyan-500/10 rounded-full backdrop-blur-md border border-white/40 shadow-xl" />
-        </div>
-
-        {/* Diamond tracking shape */}
-        <div className="absolute bottom-40 left-1/4 w-12 h-12 md:w-20 md:h-20 animate-spin [animation-duration:10s]">
-          <div className="w-full h-full bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-xl backdrop-blur-md border border-white/40 shadow-xl transform rotate-45" />
-        </div>
+        <motion.div 
+          style={{ y: useTransform(scrollYProgress, [0, 1], [0, -100]) }}
+          className="absolute top-[15%] left-[10%] w-24 h-24 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-2xl backdrop-blur-md border border-white/20 shadow-2xl rotate-12"
+        />
+        <motion.div 
+          style={{ y: useTransform(scrollYProgress, [0, 1], [0, -200]) }}
+          className="absolute top-[40%] right-[10%] w-32 h-32 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full backdrop-blur-md border border-white/20 shadow-2xl"
+        />
+        <motion.div 
+          style={{ y: useTransform(scrollYProgress, [0, 1], [0, -150]) }}
+          className="absolute bottom-[20%] left-[20%] w-16 h-16 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-xl backdrop-blur-md border border-white/20 shadow-2xl -rotate-12"
+        />
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20 pb-32">
-        <div className="animate-in fade-in slide-in-from-bottom-5 duration-1000">
-          
+      <motion.div 
+        style={{ y, opacity, scale }}
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
           {/* Availability Badge */}
-          <div className="inline-flex items-center space-x-2 px-4 py-2 bg-white/80 backdrop-blur-md rounded-full border border-gray-200 mb-6 shadow-sm hover:shadow-md transition-shadow">
-            <Sparkles className="w-4 h-4 text-yellow-500" />
-            <span className="text-sm font-medium text-gray-700">Available for opportunities</span>
-          </div>
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            className="inline-flex items-center space-x-2 px-4 py-2 bg-white/5 dark:bg-white/10 backdrop-blur-xl rounded-full border border-white/10 mb-8 shadow-2xl"
+          >
+            <Sparkles className="w-4 h-4 text-indigo-400" />
+            <span className="text-sm font-medium text-foreground/80">Available for new opportunities</span>
+          </motion.div>
 
-          <p className="text-blue-600 text-lg md:text-xl font-medium mb-4 tracking-wide">
-            Hello, I'm
-          </p>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-indigo-500 dark:text-indigo-400 text-lg md:text-xl font-medium mb-4 tracking-widest uppercase"
+          >
+            Engineering the Intelligence
+          </motion.p>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold mb-6 tracking-tight">
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black mb-8 tracking-tighter leading-none">
+            <span className="text-gradient">
               Saurav Raj
             </span>
           </h1>
 
           {/* Typing Effect Subtitle */}
-          <div className="h-12 md:h-16 flex items-center justify-center mb-6">
-            <span className="text-2xl md:text-3xl lg:text-4xl font-semibold text-gray-800">
+          <div className="h-16 md:h-20 flex items-center justify-center mb-8">
+            <span className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground/90">
               {text}
-              <span className="inline-block w-[3px] h-[0.8em] bg-blue-600 ml-2 animate-pulse align-middle" />
+              <motion.span 
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{ duration: 0.8, repeat: Infinity }}
+                className="inline-block w-[4px] h-[0.9em] bg-indigo-500 ml-3 align-middle" 
+              />
             </span>
           </div>
 
-          {/* Location */}
-          <div className="flex items-center justify-center space-x-2 text-gray-600 mb-8">
-            <MapPin className="w-5 h-5 text-blue-500" />
-            <span className="text-md font-medium">Muzaffarpur, Bihar, India</span>
+          <div className="flex items-center justify-center space-x-2 text-foreground/60 mb-12">
+            <MapPin className="w-5 h-5 text-indigo-500" />
+            <span className="text-lg font-medium">Bihar, India</span>
           </div>
 
-          {/* Description */}
-          <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-normal">
-            Aspiring Software and AI/ML Engineer aiming to apply strong computer science 
-            and machine learning fundamentals to build scalable, real-world solutions 
-            while continuously learning and growing professionally.
+          <p className="text-foreground/70 text-xl md:text-2xl max-w-3xl mx-auto mb-16 leading-relaxed font-light">
+            I build <span className="text-foreground font-medium">intelligent systems</span> and 
+            <span className="text-foreground font-medium"> scalable web experiences</span> that 
+            transform complex data into meaningful impact.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <a 
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
+            <motion.a 
               href="#contact" 
-              className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-blue-500/25 hover:scale-105 active:scale-95 flex items-center space-x-3 overflow-hidden"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-10 py-5 bg-indigo-600 text-white rounded-2xl font-bold text-lg transition-all shadow-2xl shadow-indigo-500/20 flex items-center space-x-3"
             >
-              <div className="absolute inset-0 bg-white/20 transition-transform -translate-x-full group-hover:translate-x-0 duration-300 pointer-events-none" />
               <Mail className="w-5 h-5" />
-              <span>Get In Touch</span>
-            </a>
+              <span>Let's Connect</span>
+            </motion.a>
             
-            <a 
+            <motion.a 
               href="https://github.com/Saurav1603" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="px-8 py-4 border-2 border-gray-200 text-gray-700 bg-white/50 backdrop-blur-sm rounded-full font-bold text-lg hover:border-blue-500 hover:text-blue-600 hover:bg-white transition-all shadow-sm hover:shadow-md active:scale-95 flex items-center space-x-3"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="px-10 py-5 glass-card rounded-2xl font-bold text-lg flex items-center space-x-3"
             >
               <Github className="w-5 h-5" />
-              <span>View GitHub</span>
-            </a>
+              <span>Source Code</span>
+            </motion.a>
           </div>
-        </div>
+        </motion.div>
 
         {/* Scroll Indicator */}
-        <button 
+        <motion.button 
           onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 text-gray-400 hover:text-blue-600 transition-colors animate-bounce cursor-pointer p-2"
-          aria-label="Scroll to about section"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, y: [0, 10, 0] }}
+          transition={{ delay: 1, duration: 2, repeat: Infinity }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-foreground/30 hover:text-indigo-500 transition-colors p-4"
         >
           <ArrowDown className="w-8 h-8" />
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
 
-      {/* Decorative Blur Overlays */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+      {/* Fade Bottom Overlay */}
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-background to-transparent pointer-events-none" />
     </section>
   );
 }
