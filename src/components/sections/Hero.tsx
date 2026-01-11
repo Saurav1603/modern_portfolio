@@ -87,27 +87,28 @@ export default function Hero() {
       {/* Mesh Background Layers */}
       <div className="absolute inset-0 bg-background" />
       
-      {/* Animated Mesh Blobs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-        <motion.div 
-          animate={{
-            x: [0, 100, 0],
-            y: [0, 50, 0],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-indigo-500/30 rounded-full blur-[120px]" 
-        />
-        <motion.div 
-          animate={{
-            x: [0, -100, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-1/4 -right-1/4 w-[700px] h-[700px] bg-purple-500/30 rounded-full blur-[120px]" 
-        />
-      </div>
+        {/* Animated Mesh Blobs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div 
+            animate={{
+              x: [0, 100, 0],
+              y: [0, 50, 0],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+            className="glow-blob top-1/4 -left-1/4 w-[600px] h-[600px] bg-indigo-500/20" 
+          />
+          <motion.div 
+            animate={{
+              x: [0, -100, 0],
+              y: [0, -50, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+            className="glow-blob bottom-1/4 -right-1/4 w-[700px] h-[700px] bg-purple-500/20" 
+          />
+        </div>
+
 
       {/* Floating Geometric Shapes */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
