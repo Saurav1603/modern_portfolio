@@ -61,48 +61,49 @@ const Skills = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, index) => (
+            {skillCategories.map((category, index) => (
+              <motion.div 
+                key={index} 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="glass-card rounded-3xl p-8 border border-black/5 dark:border-white/10 flex flex-col h-full"
+              >
+                <div className="flex items-center space-x-4 mb-8">
+                  <div className="p-3 bg-indigo-500/10 rounded-2xl">
+                    {category.icon}
+                  </div>
+                  <h3 className="text-2xl font-black text-foreground">
+                    {category.title}
+                  </h3>
+                </div>
+                
+                <div className="flex flex-wrap gap-3 mt-auto">
+                  {category.skills.map((skill, sIdx) => (
+                    <motion.span 
+                      key={sIdx} 
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      className="inline-flex items-center px-4 py-2 rounded-xl text-sm font-bold bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/10 text-foreground/70 hover:text-indigo-500 hover:border-indigo-500 transition-all cursor-default"
+                    >
+                      {skill}
+                    </motion.span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+
             <motion.div 
-              key={index} 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="glass-card rounded-3xl p-8 border border-white/10 flex flex-col h-full"
+              transition={{ delay: 0.5 }}
+              className="glass-card rounded-3xl p-8 border-dashed border-2 border-indigo-500/20 bg-indigo-500/5 flex flex-col justify-center items-center text-center"
             >
-              <div className="flex items-center space-x-4 mb-8">
-                <div className="p-3 bg-indigo-500/10 rounded-2xl">
-                  {category.icon}
-                </div>
-                <h3 className="text-2xl font-black text-foreground">
-                  {category.title}
-                </h3>
+              <div className="p-5 bg-black/5 dark:bg-white/10 rounded-full shadow-2xl mb-6">
+                <Zap className="w-10 h-10 text-indigo-500" />
               </div>
-              
-              <div className="flex flex-wrap gap-3 mt-auto">
-                {category.skills.map((skill, sIdx) => (
-                  <motion.span 
-                    key={sIdx} 
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    className="inline-flex items-center px-4 py-2 rounded-xl text-sm font-bold bg-white/5 border border-white/10 text-foreground/70 hover:text-indigo-500 hover:border-indigo-500 transition-all cursor-default"
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="glass-card rounded-3xl p-8 border-dashed border-2 border-indigo-500/20 bg-indigo-500/5 flex flex-col justify-center items-center text-center"
-          >
-            <div className="p-5 bg-white/10 rounded-full shadow-2xl mb-6">
-              <Zap className="w-10 h-10 text-indigo-500" />
-            </div>
             <h3 className="text-2xl font-black text-foreground mb-3">Continuous Growth</h3>
             <p className="text-foreground/60 font-medium leading-relaxed">
               Always expanding my horizon with emerging technologies in AI, Distributed Systems, and Web Architecture.
