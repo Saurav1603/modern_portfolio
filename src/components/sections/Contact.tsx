@@ -26,13 +26,6 @@ export default function Contact() {
       href: "https://github.com/Saurav1603",
       desc: "Code & Projects",
       color: "bg-foreground/5 text-foreground/70"
-    },
-    {
-      name: "Twitter",
-      icon: Twitter,
-      href: "https://twitter.com",
-      desc: "Latest Updates",
-      color: "bg-sky-400/10 text-sky-400"
     }
   ];
 
